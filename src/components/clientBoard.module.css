@@ -1,0 +1,24 @@
+.background_image {
+    background-image: url('../photos/background_image.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    opacity: 80%;
+}
+
+.assign_device {
+    position: 'relative';
+    top: 20%;
+    left: 5%;
+}
+
+.show_dialog {
+    position: absolute;
+    width: 70%;
+    height: 80%;
+    top: 15%;
+    left: 15%;
+    z-index: 100;
+    border-radius: 8px;
+}

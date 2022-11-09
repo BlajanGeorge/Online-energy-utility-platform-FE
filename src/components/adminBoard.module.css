@@ -1,0 +1,52 @@
+.background_image {
+    background-image: url('../photos/background_image.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    opacity: 80%;
+}
+
+.box {
+    background-color: white;
+    width: 70%;
+    height: 70%;
+    position: absolute;
+    border-radius: 4px;
+    top: 20%;
+    left: 15%;
+}
+
+.box2 {
+    background-color: white;
+    width: 45%;
+    height: 90%;
+    position: absolute;
+    border-radius: 4px;
+    top: 5%;
+    left: 3%;
+    border: solid;
+
+}
+
+.box3 {
+    background-color: white;
+    width: 45%;
+    height: 90%;
+    position: absolute;
+    border-radius: 4px;
+    top: 5%;
+    left: 50%;
+    border: solid;
+
+}
+
+.box4 {
+    background-color: white;
+    width: 70%;
+    height: 50%;
+    position: absolute;
+    border-radius: 4px;
+    top: 20%;
+    left: 15%;
+}
