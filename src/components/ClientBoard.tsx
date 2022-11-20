@@ -216,7 +216,7 @@ export function ClientBoard() {
                         </LocalizationProvider>
                     </FormControl>
                     {showChart &&
-                        <FormControl sx={{ position: 'absolute', width: '70%', top: '45%', left: '15%' }}>
+                        <FormControl sx={{ position: 'absolute', width: '70%', top: '42%', left: '15%' }}>
                             <Bar options={options} data={data} />
                         </FormControl>
                     }
