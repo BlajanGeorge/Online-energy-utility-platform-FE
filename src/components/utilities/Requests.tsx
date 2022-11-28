@@ -1,6 +1,7 @@
 import axios from "axios";
-import { createHashRouter } from "react-router-dom";
 import { BackendRoutes } from "../../constants/Constants";
+import SockJS from 'sockjs-client';
+import { CompatClient, Stomp } from '@stomp/stompjs';
 
 interface UserResponse {
     id: number
@@ -179,4 +180,20 @@ export async function assignDeviceToUser(deviceId: string, userId: string, token
             "Authorization": "Bearer " + token
         }
     })
+}
+
+export async function connectToWs(setNotifMessage : Function, setAlert : Function) {
+    var socket = new SockJS("http://localhost:10000/ws/");
+    var  client = Stomp.over(socket);
+    client.connect({}, function() {
+            client.subscribe("/serverPublish/messageOnClient/" + localStorage.getItem("id"), function(message) {
+                var binaryArray = message.binaryBody;
+                var stringMessage = "";
+                for(var i = 0; i < binaryArray.length; i++) {
+                    stringMessage += String.fromCharCode(binaryArray[i]);
+                }
+                setNotifMessage(stringMessage)
+                setAlert(true)
+            })
+        })
 }

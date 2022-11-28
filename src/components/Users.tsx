@@ -1,7 +1,7 @@
 import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material"
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { deleteUser } from "./utilities/Requests";
+import { connectToWs, deleteUser } from "./utilities/Requests";
 import LinkIcon from '@mui/icons-material/Link';
 
 export interface User {

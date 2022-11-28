@@ -1,4 +1,4 @@
-import { Box, FormControl, IconButton, Paper, TextField, Typography } from "@mui/material";
+import { Alert, Box, FormControl, IconButton, Paper, Snackbar, TextField, Typography } from "@mui/material";
 import axios from 'axios';
 import { useEffect, useState } from "react";
 import { BackendRoutes } from "../constants/Constants";
@@ -9,7 +9,7 @@ import LinkIcon from '@mui/icons-material/Link';
 import { pink } from '@mui/material/colors';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
-import { assignUnassignDevices } from "./utilities/Requests";
+import { assignUnassignDevices, connectToWs } from "./utilities/Requests";
 import { LocalizationProvider, StaticDatePicker } from "@mui/x-date-pickers";
 import AdapterDayjs from "@date-io/dayjs";
 import React from "react";
@@ -44,6 +44,8 @@ export function ClientBoard() {
     const [showChart, setShowChart] = useState(false)
     const [chartData, setChartData] = useState([])
     const [deviceToCheckId, setDevicesToCheckId] = useState('')
+    const [notifyMessage, setNotifMessage] = useState('')
+    const [openNotifAlert, setOpenNotifAlert] = useState(false)
     const labels = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'];
     const data = {
         labels,
@@ -66,6 +68,14 @@ export function ClientBoard() {
             }
         }
     };
+
+    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setOpenNotifAlert(false);
+      };
 
     const processDevices = () => {
         let dev = devices
@@ -108,6 +118,7 @@ export function ClientBoard() {
     }
 
     useEffect(() => {
+        connectToWs(setNotifMessage, setOpenNotifAlert)
         const getUserById = async () => {
             await axios.get(BackendRoutes.GET_USERS_ROUTE + localStorage.getItem('id'), {
                 headers: {
@@ -241,6 +252,11 @@ export function ClientBoard() {
                 border=''
                 type={1}
             />
+            <Snackbar open={openNotifAlert} autoHideDuration={10000} onClose={handleClose}>
+  <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+    {notifyMessage}
+  </Alert>
+</Snackbar>
         </Box >
     )
 }
