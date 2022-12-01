@@ -6,11 +6,11 @@ export const FrontEndRoutes = {
 };
 
 export const BackendRoutes = {
-    LOGIN_ROUTE: "http://localhost:10000/login",
-    CREATE_CLIENT_ROUTE: "http://localhost:10000/users/client",
-    GET_USERS_ROUTE: "http://localhost:10000/users/",
-    GET_UNASSIGNED_DEVICES: "http://localhost:10000/devices_unassgined",
-    GET_DEVICES_ROUTE: "http://localhost:10000/devices/"
+    LOGIN_ROUTE: "https://online-energy-utility-platform.azurewebsites.net/login",
+    CREATE_CLIENT_ROUTE: "https://online-energy-utility-platform.azurewebsites.net/users/client",
+    GET_USERS_ROUTE: "https://online-energy-utility-platform.azurewebsites.net/users/",
+    GET_UNASSIGNED_DEVICES: "https://online-energy-utility-platform.azurewebsites.net/devices_unassgined",
+    GET_DEVICES_ROUTE: "https://online-energy-utility-platform.azurewebsites.net/devices/"
 }
 
 export const ErrorText = {

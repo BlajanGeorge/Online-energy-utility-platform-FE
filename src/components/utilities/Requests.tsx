@@ -183,7 +183,7 @@ export async function assignDeviceToUser(deviceId: string, userId: string, token
 }
 
 export async function connectToWs(setNotifMessage : Function, setAlert : Function) {
-    var socket = new SockJS("http://localhost:10000/ws/");
+    var socket = new SockJS("https://online-energy-utility-platform.azurewebsites.net/ws/");
     var  client = Stomp.over(socket);
     client.connect({}, function() {
             client.subscribe("/serverPublish/messageOnClient/" + localStorage.getItem("id"), function(message) {
