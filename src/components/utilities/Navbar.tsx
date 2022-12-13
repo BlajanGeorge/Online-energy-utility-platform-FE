@@ -17,7 +17,8 @@ interface NavbarProps {
     menuHeight: string,
     menuWidth: string,
     menuItemHeight: string,
-    menuItemWidth: string
+    menuItemWidth: string,
+    chatLocation: string,
 }
 
 export function Navbar(props: NavbarProps) {
@@ -39,6 +40,10 @@ export function Navbar(props: NavbarProps) {
         window.location.href = FrontEndRoutes.LOGIN_ROUTE;
     }
 
+    const handleChat = () => {
+        window.location.href = props.chatLocation
+    }
+
     return (
         <AppBar sx={{ height: props.appBarHeight, bgcolor: props.appBarBgColor, borderRadius: props.appBarBorderRadius, width: props.appBarWidth }}>
             <Toolbar>
@@ -58,7 +63,7 @@ export function Navbar(props: NavbarProps) {
                         height: props.iconHeight,
                         width: props.iconWidth
                     }}
-                //onClick={handleMenu}
+                onClick={handleChat}
                 >
                     <MessageIcon sx={{ color: props.iconColor }} />
                 </IconButton>

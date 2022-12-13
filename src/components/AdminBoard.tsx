@@ -4,7 +4,7 @@ import classes from './adminBoard.module.css';
 import { useEffect, useState } from "react";
 import { User, Users } from "./Users";
 import axios from "axios";
-import { BackendRoutes, ErrorText } from "../constants/Constants";
+import { BackendRoutes, ErrorText, FrontEndRoutes } from "../constants/Constants";
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
 import { assignDeviceToUser, createDevice, createUser, unassignDeviceFromUser, updateDevice, updateUser } from "./utilities/Requests";
@@ -88,6 +88,7 @@ export function AdminMainPanel() {
                 menuWidth='150px'
                 menuItemHeight='40%'
                 menuItemWidth='100%'
+                chatLocation={FrontEndRoutes.ADMIN_CHAT}
             />
             {(showDialog == 0 || showDialog == 3) &&
                 <>

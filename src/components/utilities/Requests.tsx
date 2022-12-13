@@ -27,6 +27,7 @@ export async function LoginRequest(username: string, password: string): Promise<
             localStorage.setItem('token', response.data.token)
             localStorage.setItem('admin', response.data.admin)
             localStorage.setItem('logged', 'true')
+            localStorage.setItem('username', response.data.username)
             state = 0
         })
         .catch(() => {
@@ -183,7 +184,7 @@ export async function assignDeviceToUser(deviceId: string, userId: string, token
 }
 
 export async function connectToWs(setNotifMessage : Function, setAlert : Function) {
-    var socket = new SockJS("https://online-energy-utility-platform.azurewebsites.net/ws/");
+    var socket = new SockJS("http://localhost:10000/ws/");
     var  client = Stomp.over(socket);
     client.connect({}, function() {
             client.subscribe("/serverPublish/messageOnClient/" + localStorage.getItem("id"), function(message) {
@@ -195,5 +196,15 @@ export async function connectToWs(setNotifMessage : Function, setAlert : Functio
                 setNotifMessage(stringMessage)
                 setAlert(true)
             })
+
+            client.subscribe("/serverPublish/messageOnClient/chat/" + localStorage.getItem("id"), function(message) {
+                var binaryArray = message.binaryBody;
+                var stringMessage = "";
+                for(var i = 0; i < binaryArray.length; i++) {
+                    stringMessage += String.fromCharCode(binaryArray[i]);
+                }
+                console.log(stringMessage)
+            })
+            client.send("/serverConsume/messageOnServer", {}, JSON.stringify({fromUserId: "2", toUserId: "2", message: "da"}))
         })
 }

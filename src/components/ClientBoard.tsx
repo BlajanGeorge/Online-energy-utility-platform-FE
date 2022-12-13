@@ -1,7 +1,7 @@
 import { Alert, Box, FormControl, IconButton, Paper, Snackbar, TextField, Typography } from "@mui/material";
 import axios from 'axios';
 import { useEffect, useState } from "react";
-import { BackendRoutes } from "../constants/Constants";
+import { BackendRoutes, FrontEndRoutes } from "../constants/Constants";
 import classes from './clientBoard.module.css';
 import { Navbar } from "./utilities/Navbar";
 import { Device, UserDevices } from "./UserDevices";
@@ -158,6 +158,7 @@ export function ClientBoard() {
                 menuWidth='150px'
                 menuItemHeight='40%'
                 menuItemWidth='100%'
+                chatLocation={FrontEndRoutes.CLIENT_CHAT}
             />
             <IconButton className={classes.assign_device} onClick={() => { setShowDialog(1) }}>
                 <LinkIcon sx={{ fontSize: 60, color: pink[500] }} />

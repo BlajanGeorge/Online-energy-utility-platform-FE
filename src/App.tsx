@@ -1,6 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AdminMainPanel } from './components/AdminBoard'
+import { AdminChat } from './components/AdminChat'
 import { ClientBoard } from './components/ClientBoard'
+import { ClientChat } from './components/ClientChat'
 import { Login } from './components/Login'
 import { AdminRoute } from './components/security/AdminRoute'
 import { ClientRoute } from './components/security/ClientRoute'
@@ -20,9 +22,21 @@ export default function App() {
           </ClientRoute>
         }
         />
+        <Route path={FrontEndRoutes.CLIENT_CHAT} element=
+          {<AdminRoute>
+            <ClientChat />
+          </AdminRoute>
+          }
+        />
         <Route path={FrontEndRoutes.ADMIN_BOARD_ROUTE} element=
           {<AdminRoute>
             <AdminMainPanel />
+          </AdminRoute>
+          }
+        />
+        <Route path={FrontEndRoutes.ADMIN_CHAT} element=
+          {<AdminRoute>
+            <AdminChat />
           </AdminRoute>
           }
         />
