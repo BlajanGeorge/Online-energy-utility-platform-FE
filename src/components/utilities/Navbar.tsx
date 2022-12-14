@@ -41,6 +41,7 @@ export function Navbar(props: NavbarProps) {
     }
 
     const handleChat = () => {
+        console.log(props.chatLocation)
         window.location.href = props.chatLocation
     }
 

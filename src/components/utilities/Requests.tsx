@@ -196,15 +196,5 @@ export async function connectToWs(setNotifMessage : Function, setAlert : Functio
                 setNotifMessage(stringMessage)
                 setAlert(true)
             })
-
-            client.subscribe("/serverPublish/messageOnClient/chat/" + localStorage.getItem("id"), function(message) {
-                var binaryArray = message.binaryBody;
-                var stringMessage = "";
-                for(var i = 0; i < binaryArray.length; i++) {
-                    stringMessage += String.fromCharCode(binaryArray[i]);
-                }
-                console.log(stringMessage)
-            })
-            client.send("/serverConsume/messageOnServer", {}, JSON.stringify({fromUserId: "2", toUserId: "2", message: "da"}))
         })
 }

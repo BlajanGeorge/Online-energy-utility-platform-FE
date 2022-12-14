@@ -23,9 +23,9 @@ export default function App() {
         }
         />
         <Route path={FrontEndRoutes.CLIENT_CHAT} element=
-          {<AdminRoute>
+          {<ClientRoute>
             <ClientChat />
-          </AdminRoute>
+          </ClientRoute>
           }
         />
         <Route path={FrontEndRoutes.ADMIN_BOARD_ROUTE} element=
