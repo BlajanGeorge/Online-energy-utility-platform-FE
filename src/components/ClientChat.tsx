@@ -20,7 +20,7 @@ export function ClientChat() {
 
     const sendMessage = (fromUserId : string, toUserId : string, username : string, message : string) => {
         if(client == undefined) {
-            var socket = new SockJS("http://localhost:10000/ws/");
+            var socket = new SockJS("https://online-energy-utility-platform.azurewebsites.net/ws/");
         client = Stomp.over(socket);
         client.connect({}, function() {
             client.send("/serverConsume/messageOnServer", {}, JSON.stringify({type: "message", fromUserId: fromUserId, toUserId: toUserId, message: message, username : username}))
@@ -32,7 +32,7 @@ export function ClientChat() {
 
     const sendTyping = (fromUserId : string, toUserId : string, username : string, message : string) => {
         if(client == undefined) {
-            var socket = new SockJS("http://localhost:10000/ws/");
+            var socket = new SockJS("https://online-energy-utility-platform.azurewebsites.net/ws/");
         client = Stomp.over(socket);
         client.connect({}, function() {
             client.send("/serverConsume/messageOnServer", {}, JSON.stringify({type: "typing", fromUserId: fromUserId, toUserId: toUserId, message: message, username : username}))
@@ -44,7 +44,7 @@ export function ClientChat() {
 
     const sendPing = (fromUserId : string, toUserId : string, username : string, message : string) => {
         if(client == undefined) {
-            var socket = new SockJS("http://localhost:10000/ws/");
+            var socket = new SockJS("https://online-energy-utility-platform.azurewebsites.net/ws/");
         client = Stomp.over(socket);
         client.connect({}, function() {
             client.send("/serverConsume/messageOnServer", {}, JSON.stringify({type: "ping", fromUserId: fromUserId, toUserId: toUserId, message: message, username : username}))
@@ -55,7 +55,7 @@ export function ClientChat() {
     }
 
     async function connectToWs() {
-        var socket = new SockJS("http://localhost:10000/ws/");
+        var socket = new SockJS("https://online-energy-utility-platform.azurewebsites.net/ws/");
         client = Stomp.over(socket);
         client.connect({}, function() {
         client.subscribe("/serverPublish/messageOnClient/chat/" + localStorage.getItem("id"), function(message) {
