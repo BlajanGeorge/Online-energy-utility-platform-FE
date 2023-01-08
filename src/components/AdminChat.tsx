@@ -13,11 +13,12 @@ export function AdminChat() {
     const [time, setTime] = useState(Date.now());
     const [userToShowConv, setUserToShowConv] = useState("")
     const [showDialog, setShowDialog] = useState(false)
-    const [personInChat, setPersonInChat] = useState(false)
+    const [personInChat] = useState(false)
     const [typing] = useState(new Map())
     const [pings] = useState(new Map())
     const [activ] = useState(new Map())
     var client: CompatClient;
+    const backendUrl = "https://online-energy-utility-platform.azurewebsites.net/ws/";
 
     const setMessagesArray = (userId: string, messages2 : Array<ChatMessage>) => {
         messages.set(userId, messages2);
@@ -25,7 +26,7 @@ export function AdminChat() {
 
     const sendMessage = (fromUserId : string, toUserId : string, username : string, message : string) => {
         if(client == undefined) {
-        var socket = new SockJS("https://online-energy-utility-platform.azurewebsites.net/ws/");
+        var socket = new SockJS(backendUrl);
         client = Stomp.over(socket);
         client.connect({}, function() {
             client.send("/serverConsume/messageOnServer", {}, JSON.stringify({type: "message", fromUserId: fromUserId, toUserId: toUserId, message: message, username : username}))
@@ -37,7 +38,7 @@ export function AdminChat() {
 
     const sendTyping = (fromUserId : string, toUserId : string, username : string, message : string) => {
         if(client == undefined) {
-            var socket = new SockJS("https://online-energy-utility-platform.azurewebsites.net/ws/");
+            var socket = new SockJS(backendUrl);
         client = Stomp.over(socket);
         client.connect({}, function() {
             client.send("/serverConsume/messageOnServer", {}, JSON.stringify({type: "typing", fromUserId: fromUserId, toUserId: toUserId, message: message, username : username}))
@@ -48,7 +49,7 @@ export function AdminChat() {
     }
 
     async function sendLeftAndEnterChatMessage(fromUserId : string, toUserLeftId : string, toUserEnterId : string, username : string, message : string) {
-        var socket = new SockJS("https://online-energy-utility-platform.azurewebsites.net/ws/");
+        var socket = new SockJS(backendUrl);
         client = Stomp.over(socket);
         client.connect({}, function() {
             client.send("/serverConsume/messageOnServer", {}, JSON.stringify({type: "leftChat", fromUserId: fromUserId, toUserId: toUserLeftId, message: message, username : username}))
@@ -57,7 +58,7 @@ export function AdminChat() {
     }
 
     async function connectToWs() {
-        var socket = new SockJS("https://online-energy-utility-platform.azurewebsites.net/ws/");
+        var socket = new SockJS(backendUrl);
         client = Stomp.over(socket);
         client.connect({}, function() {
         client.subscribe("/serverPublish/messageOnClient/chat/" + localStorage.getItem("id"), function(message) {
