@@ -184,8 +184,9 @@ export async function assignDeviceToUser(deviceId: string, userId: string, token
 }
 
 export async function connectToWs(setNotifMessage : Function, setAlert : Function) {
-    var socket = new SockJS("https://online-energy-utility-platform.azurewebsites.net/ws/");
+    var socket = new SockJS("http://localhost:10000/socket/");
     var  client = Stomp.over(socket);
+    console.log(client)
     client.connect({}, function() {
             client.subscribe("/serverPublish/messageOnClient/" + localStorage.getItem("id"), function(message) {
                 var binaryArray = message.binaryBody;
@@ -196,5 +197,6 @@ export async function connectToWs(setNotifMessage : Function, setAlert : Functio
                 setNotifMessage(stringMessage)
                 setAlert(true)
             })
-        })
+         console.log("connected")
+      })
 }

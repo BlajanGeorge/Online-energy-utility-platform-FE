@@ -28,6 +28,7 @@ export function AdminDevices(props: AdminDevicesProps) {
             height: props.tableContainerHeight,
             top: props.tableContainerTop,
             left: props.tableContainerLeft
+            
         }}>
             <Table>
                 <TableHead sx={{ width: props.tableHeadWidth, height: props.tableHeadHeight }}>
