@@ -172,6 +172,7 @@ export async function deleteDeviceById(deviceId: string) {
         headers: {
             "Authorization": "Bearer " + localStorage.getItem('token')
         }
+        
     })
 }
 
