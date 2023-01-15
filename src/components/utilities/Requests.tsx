@@ -176,6 +176,7 @@ export async function deleteDeviceById(deviceId: string) {
     })
 }
 
+
 export async function assignDeviceToUser(deviceId: string, userId: string, token: string) {
     await axios.put(BackendRoutes.GET_USERS_ROUTE + userId + "/" + deviceId, {}, {
         headers: {
