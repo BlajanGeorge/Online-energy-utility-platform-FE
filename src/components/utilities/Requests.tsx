@@ -171,12 +171,13 @@ export async function createDevice(description: string, address: string, maxHour
 export async function deleteDeviceById(deviceId: string) {
     await axios.delete(BackendRoutes.GET_DEVICES_ROUTE + deviceId, {
         headers: {
-            
+
             "Authorization": "Bearer " + localStorage.getItem('token')
         }
         
     })
 }
+
 
 
 export async function assignDeviceToUser(deviceId: string, userId: string, token: string) {
