@@ -174,8 +174,9 @@ export async function deleteDeviceById(deviceId: string) {
         }
         
     })
-    
+
 }
+
 
 
 export async function assignDeviceToUser(deviceId: string, userId: string, token: string) {
