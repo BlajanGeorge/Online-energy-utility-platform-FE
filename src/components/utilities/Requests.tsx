@@ -160,6 +160,7 @@ export async function createDevice(description: string, address: string, maxHour
         }
     }).then(() => {
         state = 0
+        
     }).catch(() => {
         
         state = 1
