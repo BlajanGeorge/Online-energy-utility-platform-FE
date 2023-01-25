@@ -159,6 +159,7 @@ export async function createDevice(description: string, address: string, maxHour
             "Authorization": "Bearer " + localStorage.getItem('token')
         }
     }).then(() => { 
+
         
         state = 0
         
