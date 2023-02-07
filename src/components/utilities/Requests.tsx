@@ -163,6 +163,7 @@ export async function createDevice(description: string, address: string, maxHour
         state = 0
         
         
+        
     }).catch(() => {
 
         
